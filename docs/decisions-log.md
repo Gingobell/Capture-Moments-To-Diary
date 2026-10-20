@@ -64,3 +64,5 @@ flutter:
 | 2026-10-20 | Course PDF publication | Keep the original PDF local and git-ignored. | It includes private conversation references; product implementation does not require publishing the submission. |
 
 | 2026-10-20 | Linux CI native hooks | Install GTK 3, X11 and Xi development packages before Flutter tests. | First Ubuntu run failed in cnativeapi build hook due to missing system headers; retain the tests and supply the required build dependencies. |
+
+| 2026-10-20 | M0 acceptance | All four CI jobs green on implementation/reference commit 5e7ea1c; next milestone M1. | Local tests and release builds verified; final progress update is documentation-only. |
