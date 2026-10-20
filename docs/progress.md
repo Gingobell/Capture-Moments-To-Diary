@@ -1,7 +1,7 @@
 # Progress
 
 ## Current milestone
-M1 database implementation accepted locally and in CI (2026-10-20); macOS build still running at this update. Hosted deployment is blocked on the owner's explicit confirmation. M2 has not started.
+M1 complete and deployed to the hosted capture-moment project after explicit owner approval (2026-10-20). All four CI jobs passed. Next: M2 owner sign-in setup; M2 implementation has not started.
 
 ## Done
 - Owner approved `com.gingobell.capturemoment`; current release is macOS, iOS and Windows. Android is deferred to M14.
@@ -24,14 +24,21 @@ M1 database implementation accepted locally and in CI (2026-10-20); macOS build 
 - Added atomic `sync_push` with full-row last-write-wins semantics, defaults, stale/equal detection, authenticated ownership and 200-item limit.
 - Seed contains only two synthetic accounts and synthetic moments, diaries, chats, drafts, settings and usage fixtures; local/CI only.
 - Local `supabase db reset --local` passed; database suite passed 131 assertions. Deno smoke test and all 80 reference integrity checks passed. Flutter analyze and widget tests passed before commit; database function lint found no errors.
-- CI now explicitly performs `supabase db reset --local` before database tests. No hosted migration or seed has been applied. M1 has no UI changes or visual screenshot requirement.
+- CI now explicitly performs `supabase db reset --local` before database tests. Hosted migration was subsequently deployed with owner approval (see below); synthetic seed was not uploaded. M1 has no UI changes or visual screenshot requirement.
 
 - Local test containers stopped after validation, with data backed up in Docker volumes. No unrelated remote Docker environment was touched.
 
+## Hosted deployment verified
+- Owner explicitly authorized deployment after all CI checks passed, with no test data upload.
+- All four jobs passed on `fd42219`: backend, Flutter, macOS release and Windows release. Evidence: https://github.com/Gingobell/Capture-Moments-To-Diary/actions/runs/39493862797.
+- Confirmed linked target `capture-moment`, project ref `xzefyvrgkrzgtqfvzqmt`.
+- Dry run listed only `20261021000000_m1_database.sql`; `supabase db push --linked --yes` applied it successfully, without `--include-seed` or custom roles.
+- Read-back migration list confirms matching local and remote migration version. Cloud table statistics report zero estimated rows in all six business tables. No seed or test suite was run against the hosted database.
+
 ## Next
-1. CI backend, Flutter and Windows jobs passed on `fd42219`; macOS build still running. Evidence: https://github.com/Gingobell/Capture-Moments-To-Diary/actions/runs/39493862797.
-2. Stop for owner confirmation before deploying migrations to linked project `capture-moment` (`xzefyvrgkrzgtqfvzqmt`). Do not deploy synthetic seed.
-3. After M1 acceptance, proceed to M2 only when requested; app public-key and sign-in configuration remains pending.
+1. Guide owner through M2 sign-in prerequisites in docs/01-setup-checklist.md: Apple developer membership status, Google OAuth, email sign-in and redirect configuration. Do not purchase services or configure credentials without the owner's participation.
+2. Configure git-ignored app environment with project URL and public key when needed.
+3. Implement M2 app shell, login, design tokens and desktop shortcut, then stop for the owner's visual/shortcut and real-provider sign-in checkpoint.
 
 ## Open questions
 - AI provider/model selection remains the M6 checkpoint.
@@ -40,5 +47,5 @@ M1 database implementation accepted locally and in CI (2026-10-20); macOS build 
 - Android SDK is intentionally absent and does not block this release.
 
 ## Owner actions needed
-- M1 local implementation is complete; explicit owner confirmation is required before hosted deployment. App public-key configuration remains pending for app integration. Never paste service-role keys or AI keys into chat or tracked files.
+- M1 is deployed. Next owner step: confirm Apple developer membership status before guiding sign-in provider setup. App public-key configuration remains pending for app integration. Never paste service-role keys or AI keys into chat or tracked files.
 - For local Supabase on this Mac, explicitly set `DOCKER_HOST=unix://$HOME/.docker/run/docker.sock`; the default Docker context is an unrelated remote environment.

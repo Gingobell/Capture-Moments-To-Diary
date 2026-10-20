@@ -70,3 +70,5 @@ flutter:
 | 2026-10-20 | M1 sync contract | Explicit static per-table upserts; full snapshots with defaults, atomic batches, equal timestamps stale; settings IDs are user UUIDs. | Preserves specified last-write-wins behavior without dynamic client-controlled SQL. |
 | 2026-10-20 | M1 access and deletion | Explicit grants with RLS, canonical diary-ID check, clear deleted content on inserts as well as updates; private daily purge at 03:17 UTC. | Supports disabled automatic exposure, prevents duplicate offline diary identities and protects deleted text on first sync. |
 | 2026-10-20 | M1 fixtures and deployment | Synthetic local/CI users only; CI explicitly resets local DB. Cloud migration remains an owner checkpoint. | Tests exercise real database roles without uploading personal data or deploying hosted schema. |
+
+| 2026-10-20 | M1 hosted deployment approved | After all four CI jobs passed, deploy only migration 20261021000000 to capture-moment. | Owner explicitly authorized deployment without test data; dry run, migration history and zero-row table statistics verified. |

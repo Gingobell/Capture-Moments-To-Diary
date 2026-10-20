@@ -11,7 +11,7 @@ Steps are grouped by the milestone that first needs them, so you can start build
 
 ## Before M1 (backend)
 - [x] **Supabase project:** owner created `capture-moment`; CLI verified `ACTIVE_HEALTHY` on 2026-10-20. Project ref: `xzefyvrgkrzgtqfvzqmt`; region: `us-east-1`; PostgreSQL 17. Owner reported following the creation settings: Data API enabled, automatic table exposure disabled, automatic RLS enabled (dashboard settings not independently verified).
-- [x] Owner completed `supabase login`; linked this repository with `supabase link --project-ref xzefyvrgkrzgtqfvzqmt` on 2026-10-20. No hosted migrations applied. App public-key configuration is still pending before app sign-in integration; no service-role key is needed for this setup.
+- [x] Owner completed `supabase login`; linked this repository with `supabase link --project-ref xzefyvrgkrzgtqfvzqmt` on 2026-10-20. M1 migration `20261021000000` deployed on 2026-10-20 after explicit owner approval and all four CI checks passed; no seed uploaded. App public-key configuration is still pending before app sign-in integration; no service-role key is needed for this setup.
 
 ## Before M6 (AI)
 - [ ] **AI provider key.** Recommended: **Google Gemini API** with **billing turned on** (Google AI Studio → Get API key → set up billing). On Google's free tier, prompts may be used to improve Google's products, which isn't acceptable for private diaries; the paid tier doesn't, and its cheapest models cost fractions of a cent per call. Optional second key: DeepSeek (very cheap and strong in Chinese, but data is processed in China; decide after the quality check in M6).
