@@ -1,0 +1,27 @@
+# Local tools and build outputs
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+node_modules/
+.dart_tool/
+**/build/
+coverage/
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+app/env/*.json
+!app/env/example.json
+supabase/.temp/
+supabase/.branches/
+*.p8
+*.p12
+*.jks
+*.keystore
+# Private records and exports
+private/
+exports/
+
+# Course hand-in contains private chat references; retain locally only
+/Project1_Capture_Moment_to_Diary.pdf
