@@ -1,7 +1,7 @@
 # Progress
 
 ## Current milestone
-M1 implementation complete locally (2026-10-20); CI verification pending. Hosted deployment is blocked on the owner's explicit confirmation. M2 has not started.
+M1 database implementation accepted locally and in CI (2026-10-20); macOS build still running at this update. Hosted deployment is blocked on the owner's explicit confirmation. M2 has not started.
 
 ## Done
 - Owner approved `com.gingobell.capturemoment`; current release is macOS, iOS and Windows. Android is deferred to M14.
@@ -23,11 +23,13 @@ M1 implementation complete locally (2026-10-20); CI verification pending. Hosted
 - Added server sync timestamps, content clearing on tombstone insert/update, canonical per-account/day diary IDs, and private daily 90-day tombstone purge.
 - Added atomic `sync_push` with full-row last-write-wins semantics, defaults, stale/equal detection, authenticated ownership and 200-item limit.
 - Seed contains only two synthetic accounts and synthetic moments, diaries, chats, drafts, settings and usage fixtures; local/CI only.
-- Local `supabase db reset --local` passed; database suite passed 131 assertions. Deno smoke test and all 80 reference integrity checks passed. Flutter analyze/test results recorded before commit.
+- Local `supabase db reset --local` passed; database suite passed 131 assertions. Deno smoke test and all 80 reference integrity checks passed. Flutter analyze and widget tests passed before commit; database function lint found no errors.
 - CI now explicitly performs `supabase db reset --local` before database tests. No hosted migration or seed has been applied. M1 has no UI changes or visual screenshot requirement.
 
+- Local test containers stopped after validation, with data backed up in Docker volumes. No unrelated remote Docker environment was touched.
+
 ## Next
-1. Verify M1 CI results.
+1. CI backend, Flutter and Windows jobs passed on `fd42219`; macOS build still running. Evidence: https://github.com/Gingobell/Capture-Moments-To-Diary/actions/runs/39493862797.
 2. Stop for owner confirmation before deploying migrations to linked project `capture-moment` (`xzefyvrgkrzgtqfvzqmt`). Do not deploy synthetic seed.
 3. After M1 acceptance, proceed to M2 only when requested; app public-key and sign-in configuration remains pending.
 
@@ -38,5 +40,5 @@ M1 implementation complete locally (2026-10-20); CI verification pending. Hosted
 - Android SDK is intentionally absent and does not block this release.
 
 ## Owner actions needed
-- No remaining owner setup blocks local M1 implementation. App public-key configuration remains pending for app integration. Never paste service-role keys or AI keys into chat or tracked files.
+- M1 local implementation is complete; explicit owner confirmation is required before hosted deployment. App public-key configuration remains pending for app integration. Never paste service-role keys or AI keys into chat or tracked files.
 - For local Supabase on this Mac, explicitly set `DOCKER_HOST=unix://$HOME/.docker/run/docker.sock`; the default Docker context is an unrelated remote environment.
