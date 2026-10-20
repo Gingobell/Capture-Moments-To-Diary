@@ -1,4 +1,4 @@
-name: M0 checks and builds
+name: Checks and builds
 on:
   push:
   pull_request:
@@ -41,6 +41,7 @@ jobs:
         with:
           version: '2.75.0'
       - run: supabase start
+      - run: supabase db reset --local
       - run: supabase test db
       - if: always()
         run: supabase stop --no-backup

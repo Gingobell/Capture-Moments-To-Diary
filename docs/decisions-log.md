@@ -66,3 +66,7 @@ flutter:
 | 2026-10-20 | Linux CI native hooks | Install GTK 3, X11 and Xi development packages before Flutter tests. | First Ubuntu run failed in cnativeapi build hook due to missing system headers; retain the tests and supply the required build dependencies. |
 
 | 2026-10-20 | M0 acceptance | All four CI jobs green on implementation/reference commit 5e7ea1c; next milestone M1. | Local tests and release builds verified; final progress update is documentation-only. |
+
+| 2026-10-20 | M1 sync contract | Explicit static per-table upserts; full snapshots with defaults, atomic batches, equal timestamps stale; settings IDs are user UUIDs. | Preserves specified last-write-wins behavior without dynamic client-controlled SQL. |
+| 2026-10-20 | M1 access and deletion | Explicit grants with RLS, canonical diary-ID check, clear deleted content on inserts as well as updates; private daily purge at 03:17 UTC. | Supports disabled automatic exposure, prevents duplicate offline diary identities and protects deleted text on first sync. |
+| 2026-10-20 | M1 fixtures and deployment | Synthetic local/CI users only; CI explicitly resets local DB. Cloud migration remains an owner checkpoint. | Tests exercise real database roles without uploading personal data or deploying hosted schema. |

@@ -1,7 +1,7 @@
 # Progress
 
 ## Current milestone
-M0 complete (2026-10-20). Next milestone: M1 — Database and sync function. M1 owner setup is complete; no M1 implementation or hosted deployment has started.
+M1 implementation complete locally (2026-10-20); CI verification pending. Hosted deployment is blocked on the owner's explicit confirmation. M2 has not started.
 
 ## Done
 - Owner approved `com.gingobell.capturemoment`; current release is macOS, iOS and Windows. Android is deferred to M14.
@@ -18,10 +18,18 @@ M0 complete (2026-10-20). Next milestone: M1 — Database and sync function. M1 
 - Public commit audit passed for common credential patterns and ignored-file boundaries. Course PDF contains private chat references and remains local/git-ignored, along with secrets, private environment files and `.venv`.
 - Local Supabase test stack stopped with data backed up to Docker volumes. Existing remote Docker context unchanged.
 
+## M1 completed locally
+- Added six tables, sync indexes, owner-only RLS, explicit role grants and five-table Realtime publication.
+- Added server sync timestamps, content clearing on tombstone insert/update, canonical per-account/day diary IDs, and private daily 90-day tombstone purge.
+- Added atomic `sync_push` with full-row last-write-wins semantics, defaults, stale/equal detection, authenticated ownership and 200-item limit.
+- Seed contains only two synthetic accounts and synthetic moments, diaries, chats, drafts, settings and usage fixtures; local/CI only.
+- Local `supabase db reset --local` passed; database suite passed 131 assertions. Deno smoke test and all 80 reference integrity checks passed. Flutter analyze/test results recorded before commit.
+- CI now explicitly performs `supabase db reset --local` before database tests. No hosted migration or seed has been applied. M1 has no UI changes or visual screenshot requirement.
+
 ## Next
-1. M1 setup completed: owner created `capture-moment`, CLI login verified, and repository linked to `xzefyvrgkrzgtqfvzqmt` (`us-east-1`, healthy PostgreSQL 17) on 2026-10-20. No hosted migrations applied.
-2. M1: implement tables, indexes, triggers, RLS, sync_push, tombstone purge and synthetic seed/tests per docs/02-backend-spec.md.
-3. Stop at the M1 owner checkpoint before applying migrations to the hosted project.
+1. Verify M1 CI results.
+2. Stop for owner confirmation before deploying migrations to linked project `capture-moment` (`xzefyvrgkrzgtqfvzqmt`). Do not deploy synthetic seed.
+3. After M1 acceptance, proceed to M2 only when requested; app public-key and sign-in configuration remains pending.
 
 ## Open questions
 - AI provider/model selection remains the M6 checkpoint.
