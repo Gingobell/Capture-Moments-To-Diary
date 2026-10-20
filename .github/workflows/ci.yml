@@ -22,7 +22,10 @@ jobs:
           flutter-version: '3.47.7'
           channel: stable
           cache: true
+      - name: Install native test dependencies
+        run: sudo apt-get update && sudo apt-get install -y libgtk-3-dev libx11-dev libxi-dev
       - run: flutter pub get --enforce-lockfile
+      - run: python ../tools/phase1-screens/verify.py
       - run: flutter analyze --no-pub
       - run: flutter test --no-pub
   backend-checks:

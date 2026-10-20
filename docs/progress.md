@@ -28,4 +28,6 @@ M0 in progress — repository, references and scaffold implemented; validation a
 - Documents moved to docs; screenshot script moved to tools; obsolete phase2-CLAUDE.md removed.
 - Three-platform scaffold, exact dependency pins, corrected bundle identifiers, environment template, Supabase init and CI workflow created.
 - Flutter analyze and widget test pass; Deno streaming smoke test passes; local macOS debug build succeeds.
-- 80 reference images captured; rerunning with corrected synthetic avatar fixture and strict font/image checks.
+- All 80 references captured with synthetic avatar and strict font/image checks; contact-sheet review covered all 80. PNG dimensions, source SHA and styles passed automated audit.
+- Local Supabase stack is healthy; pgTAP bootstrap tests passed (2 assertions).
+- First GitHub Actions run started: https://github.com/Gingobell/Capture-Moments-To-Diary/actions/runs/39487611251; Ubuntu native dependency failure diagnosed and fixed in workflow; rerun pending.

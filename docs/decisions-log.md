@@ -62,3 +62,5 @@ flutter:
 ```
 | 2026-10-20 | Reference avatar fixture | Supply a synthetic G avatar in the runtime stub and reject broken images; explicitly load and check all reference fonts. | The supplied stub omitted avatarUrl, creating broken-image icons; Phase 1 HTML remains unchanged. |
 | 2026-10-20 | Course PDF publication | Keep the original PDF local and git-ignored. | It includes private conversation references; product implementation does not require publishing the submission. |
+
+| 2026-10-20 | Linux CI native hooks | Install GTK 3, X11 and Xi development packages before Flutter tests. | First Ubuntu run failed in cnativeapi build hook due to missing system headers; retain the tests and supply the required build dependencies. |
